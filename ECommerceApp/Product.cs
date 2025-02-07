@@ -9,7 +9,21 @@ namespace ECommerceApp
     public class Product
     {
         public int ProdID { get; set; }
-        public string ProdName { get; set; }
+        
+
+        // Error is thrown if the product name is null or empty
+        private string _prodName;
+        public string ProdName {
+            get { return _prodName; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException("Product name can't be NULL or EMPTY!");
+                }
+                _prodName = value;
+            }
+        }
         public decimal ItemPrice { get; set; }
         public int StockAmount { get; set; }
 
