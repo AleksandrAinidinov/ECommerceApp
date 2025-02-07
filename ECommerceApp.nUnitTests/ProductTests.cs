@@ -268,5 +268,108 @@ namespace ECommerceApp.nUnitTests
             Assert.That(ex.Message, Does.Contain("Product name can't be NULL or EMPTY!"));
         }
 
+
+
+        /// <summary>
+        /// Test that increases the StockAmount by a positive value
+        /// </summary>
+        [Test]
+        public void IncreaseStock_ShouldIncreaseStock_WhenPositiveValue()
+        {
+            // Arrange - create a Product instance
+            Product product = new Product(101, "Phone", 500.00m, 50);
+
+            // Act - increase stock by a positive value
+            product.IncreaseStock(20);
+
+            // Assert - check the stock amount changes (it should)
+            Assert.That(product.StockAmount, Is.EqualTo(70));
+        }
+
+        /// <summary>
+        /// Test that does not change the StockAmount when a negative value is used
+        /// </summary>
+        [Test]
+        public void IncreaseStock_ShouldNotChangeStock_WhenNegativeValue()
+        {
+            // Arrange - create a Product instance
+            Product product = new Product(102, "Tablet", 300.00m, 30);
+
+            // Act - increase stock by a negative value
+            product.IncreaseStock(-10);
+
+            // Assert - check the stock amount changes (it shouldn't)
+            Assert.That(product.StockAmount, Is.EqualTo(30));
+        }
+
+        /// <summary>
+        /// Test that does not change the StockAmount when "0" is used
+        /// </summary>
+        [Test]
+        public void IncreaseStock_ShouldNotChangeStock_WhenZeroValue()
+        {
+            // Arrange - create a Product instance
+            Product product = new Product(103, "Monitor", 200.00m, 20);
+
+            // Act - increase stock by a "0"
+            product.IncreaseStock(0);
+
+            // Assert - check the stock amount changes (it shouldn't)
+            Assert.That(product.StockAmount, Is.EqualTo(20));
+        }
+
+
+
+
+
+        /// <summary>
+        /// Test that decreases the StockAmount by a positive value
+        /// </summary>
+        [Test]
+        public void DecreaseStock_ShouldDecreaseStock_WhenPositiveValue()
+        {
+            // Arrange - create a Product instance
+            Product product = new Product(104, "Mouse", 50.00m, 40);
+
+            // Act - decrease stock
+            product.DecreaseStock(10);
+
+            // Assert - check the stock amount changes (it should)
+            Assert.That(product.StockAmount, Is.EqualTo(30));
+        }
+
+        /// <summary>
+        /// Test that does not change the StockAmount when a negative value is used
+        /// </summary>
+        [Test]
+        public void DecreaseStock_ShouldNotChangeStock_WhenNegativeValue()
+        {
+            // Arrange - create a Product instance
+            Product product = new Product(105, "Keyboard", 100.00m, 25);
+
+            // Act - decrease stock by a negative value
+            product.DecreaseStock(-5);
+
+            // Assert - check the stock amount changes (it shouldn't)
+            Assert.That(product.StockAmount, Is.EqualTo(25));
+        }
+
+        /// <summary>
+        /// Test that does not change the StockAmount when "0" is used
+        /// </summary>
+        [Test]
+        public void DecreaseStock_ShouldNotChangeStock_WhenZero()
+        {
+            // Arrange - create a Product instance
+            Product product = new Product(106, "Speaker", 150.00m, 60);
+
+            // Act - decrease stock by a "0"
+            product.DecreaseStock(0);
+
+            // Assert - check the stock amount changes (it shouldn't)
+            Assert.That(product.StockAmount, Is.EqualTo(60));
+        }
+
+
     }
 }
